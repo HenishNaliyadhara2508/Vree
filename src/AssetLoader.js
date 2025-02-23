@@ -1,9 +1,9 @@
-// loaders.js
+
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/Addons.js";
 import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader.js";
 import { vreeStore } from "./VreeStore";
-// Loader management function
+
 export class LoaderManager {
   constructor() {
     this.loadedAssets = {
@@ -11,8 +11,8 @@ export class LoaderManager {
       environmentTexture: false,
       gltfModel: false,
     };
-    this.scene = null; // Will be set later
-    this.onCompleteCallback = null; // Will be set to a callback that will be triggered when all assets are loaded
+    this.scene = null; 
+    this.onCompleteCallback = null; 
   }
 
   setScene(scene) {
@@ -23,7 +23,6 @@ export class LoaderManager {
     this.onCompleteCallback = callback;
   }
 
-  // Function to load a texture (background)
   loadTexture(path) {
     const loader = new THREE.TextureLoader();
     loader.load(path, (texture) => {

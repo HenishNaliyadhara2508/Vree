@@ -2,7 +2,7 @@ import { useState } from "react";
 import CustomFrame from "./Utils/CustomFrame";
 import CustomTemple from "./Utils/CustomTemple";
 
-const TextureComponent = ({ section }) => {
+const TextureComponent = ({ selectedSection }) => {
   const [selectedTexture, setSelectedTexture] = useState(null);
 
   const availableTextures = [
@@ -10,17 +10,18 @@ const TextureComponent = ({ section }) => {
     { path: "/assets/texture/original.jpg", name: "original.jpg" },
     { path: "/assets/texture/texture1.png", name: "texture1" },
     { path: "/assets/texture/texture2.jpg", name: "texture2" },
+    { path: "/assets/texture/texture3.jpg", name: "texture3" },
   ];
 
   const handleTextureSelection = (name, path) => {
     console.log(`Selected Texture: ${name} at ${path}`);
     setSelectedTexture(name);
 
-    if (section === "frame") {
+    if (selectedSection === "frame") {
       CustomFrame.updateFrameTexture(path, name);
     }
 
-    if (section === "temple") {
+    if (selectedSection === "temple") {
       CustomTemple.updateTempleTexture(path, name);
     }
   };

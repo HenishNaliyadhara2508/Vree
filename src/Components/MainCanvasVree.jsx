@@ -10,7 +10,6 @@ const VreeCanvas = () => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
-    // Scene creation
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
       75,
