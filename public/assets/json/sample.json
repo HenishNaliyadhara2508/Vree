@@ -1,0 +1,57 @@
+{
+    "glbUrl": "./assets/glbs/sampleModel.glb",
+    "groups": [
+        {
+            "displayName": "Frame",
+            "meshNode": ["frame"],
+            "selectedTexture": "original.jpg",
+            "selectedColor": null,
+            "roughness": 0.1,
+            "metalness": 0.2,
+            "transparency": 0,
+            "availableTextures": [
+                "original.jpg",
+                "texture1.png",
+                "texture3.jpg"
+            ]
+        },
+        {
+            "displayName": "Temple",
+            "meshNode": ["left_temple", "right_temple"],
+            "selectedTexture": "original.jpg",
+            "selectedColor": "#FFFFFF",
+            "roughness": 0.2,
+            "metalness": 0.1,
+            "transparency": 0,
+            "availableTextures": [
+                "original.jpg",
+                "texture1.png",
+                "texture2.jpg"
+            ]
+        },
+        {
+            "displayName": "Lenses",
+            "meshNode": ["left_lens", "right_lens"],
+            "selectedTexture": null,
+            "selectedColor": "#FFFFFF",
+            "roughness": 0,
+            "metalness": 0.6,
+            "transparency": 0.8
+        }
+    ],
+    "textures": [
+        "original.jpg",
+        "texture1.png",
+        "texture2.jpg",
+        "texture3.jpg"
+    ],
+    "colors": [
+        "#FFFFFF",
+        "#D5BC93",
+        "#AC252B",
+        "#185848",
+        "#025D98",
+        "#D2A693",
+        "Custom"
+    ]
+}
