@@ -4,6 +4,7 @@ class CustomFrame {
     constructor() {
         vreeStore.frameTexture = null;
         vreeStore.frameColor = vreeStore.frameMesh.material.color;
+
         vreeStore.frameMetalness = vreeStore.frameMesh.material.metalness;
         vreeStore.frameRoughness = vreeStore.frameMesh.material.roughness;
         // vreeStore.frameMesh.material.transparent = true;
@@ -40,5 +41,4 @@ class CustomFrame {
         vreeStore.frameMesh.material.opacity = transparency;
       }
 }
-
 export default CustomFrame;

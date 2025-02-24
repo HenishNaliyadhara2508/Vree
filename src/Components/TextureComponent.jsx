@@ -41,8 +41,8 @@ const TextureComponent = ({ selectedSection }) => {
             key={texture.name}
             className={`relative cursor-pointer w-10 h-10 rounded-full transition-all duration-300 ${
               selectedTexture === texture.name
-                ? "border-4 border-blue-500 shadow-lg scale-105"
-                : "hover:border-4 hover:border-white hover:scale-110"
+                ? "shadow-[0_0_20px_4px_rgba(150,100,255,0.75)] scale-105"
+                : "hover:scale-110 hover:shadow-[0_0_15px_2px_rgba(245,245,245,0.75)]"
             }`}
             style={{
               backgroundImage: `url(${texture.path})`,

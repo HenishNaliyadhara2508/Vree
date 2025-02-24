@@ -37,16 +37,16 @@ const ColorComponent = ({ selectedSection }) => {
     <>
         
       <div className="flex flex-col p-4 ">
-      <div className="text-xl text-white font-semibold ">Color</div>
+      <div className="text-xl text-white font-semibold mb-2">Color</div>
         {/* Color palette */}
-        <div className="flex flex-wrap gap-15">
+        <div className="flex flex-wrap space-x-10 gap-5">
           {colors.map((color, index) => (
             <div
               key={index}
               className={`w-10 h-10 rounded-full bg-cover bg-center transition-all duration-300 ${
                 selectedColor === color
-                  ? "border-4 border-blue-500"
-                  : "hover:border-4 hover:border-white"
+                ? "shadow-[0_0_20px_4px_rgba(150,100,255,0.75)] scale-105"
+                : "hover:scale-110 hover:shadow-[0_0_15px_2px_rgba(245,245,245,0.75)]"
               }`}
               style={{
                 backgroundColor: color === "Custom" ? "#FFFFFF" : color,
