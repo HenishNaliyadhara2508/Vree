@@ -9,12 +9,14 @@ class VreeStore {
   lensTransparency = 0;
 
   templeTexture = null;
+  templeIntialTexture = null;
   templeColor = "#ffffff";
   templeMetalness = 0.1;
   templeRoughness = 0.2;
   templeTransparency = 0;
 
   frameTexture = null;
+  frameIntialTexture = null;
   frameColor = "#ffffff";
   frameMetalness = 0.2;
   frameRoughness = 0.1;

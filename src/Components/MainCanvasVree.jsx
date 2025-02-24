@@ -6,14 +6,14 @@ import CustomFrame from "./Utils/CustomFrame";
 import CustomLenses from "./Utils/CustomLens"; 
 import CustomTemple from "./Utils/CustomTemple"; 
 
-const VreeCanvas = () => {
+const MainCanvasVree = () => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
       75,
-      window.innerWidth / window.innerHeight,
+      window.innerWidth*0.6 / window.innerHeight,
       0.1,
       1000
     );
@@ -26,8 +26,9 @@ const VreeCanvas = () => {
     // Set up the renderer
     const renderer = new THREE.WebGLRenderer({
       canvas: canvasRef.current,
+      alpha: true,
     });
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(window.innerWidth*0.6, window.innerHeight);
 
     // Set up asset loader
     const loader = new LoaderManager();
@@ -42,7 +43,7 @@ const VreeCanvas = () => {
     });
 
     // Load assets (textures and models)
-    loader.loadTexture("/assets/background/background.png");
+    // loader.loadTexture("/assets/background/background.png");
     loader.loadEnvironmentTexture("/assets/environment/brown_photostudio_02_1k.hdr");
     loader.loadGLTFModel("/assets/glbs/sampleModel.glb");
 
@@ -74,7 +75,7 @@ const VreeCanvas = () => {
     };
   }, []);
 
-  return <canvas ref={canvasRef} className="webgl" />;
+  return <canvas ref={canvasRef} className="webgl min-h-screen" />;
 };
 
-export default VreeCanvas;
+export default MainCanvasVree;

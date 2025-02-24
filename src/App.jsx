@@ -1,15 +1,17 @@
 import "./App.css";
-import ColorComponent from "./Components/ColorComponent";
 import MainCanvasVree from "./Components/MainCanvasVree";
-import TextureComponent from "./Components/TextureComponent";
+import Navbar from "./Components/Navbar";
+import SideBarComponent from "./Components/SideBarComponent";
 
 function App() {
   return (
     <>
-      <div className="" >
-      <MainCanvasVree />
-      <TextureComponent selectedSection="frame" className="" />
-      <ColorComponent selectedSection="frame"/>
+      <div className="relative">
+        <Navbar />
+        <div className="w-50">
+          <MainCanvasVree />
+        </div>
+        <SideBarComponent />
       </div>
     </>
   );

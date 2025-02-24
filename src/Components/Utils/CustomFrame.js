@@ -25,17 +25,17 @@ class CustomFrame {
         vreeStore.frameMesh.material.color = new THREE.Color(color);
       }
     
-      updateFrameMetalness(metalness) {
+      static updateFrameMetalness(metalness) {
         vreeStore.frameMetalness = metalness;
         vreeStore.frameMesh.material.metalness = metalness;
       }
     
-      updateFrameRoughness(roughness) {
+      static updateFrameRoughness(roughness) {
         vreeStore.frameRoughness = roughness;
         vreeStore.frameMesh.material.roughness = roughness;
       }
     
-      updateFrameTransparency(transparency) {
+      static updateFrameTransparency(transparency) {
         vreeStore.frameTransparency = transparency;
         vreeStore.frameMesh.material.opacity = transparency;
       }

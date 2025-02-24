@@ -7,7 +7,7 @@ import { vreeStore } from "./VreeStore";
 export class LoaderManager {
   constructor() {
     this.loadedAssets = {
-      backgroundTexture: false,
+      
       environmentTexture: false,
       gltfModel: false,
     };
@@ -23,14 +23,14 @@ export class LoaderManager {
     this.onCompleteCallback = callback;
   }
 
-  loadTexture(path) {
-    const loader = new THREE.TextureLoader();
-    loader.load(path, (texture) => {
-      texture.colorSpace = THREE.SRGBColorSpace;
-      this.loadedAssets.backgroundTexture = texture;
-      this.checkAssetsLoaded();
-    });
-  }
+//   loadTexture(path) {
+//     const loader = new THREE.TextureLoader();
+//     loader.load(path, (texture) => {
+//       texture.colorSpace = THREE.SRGBColorSpace;
+//       this.loadedAssets.backgroundTexture = texture;
+//       this.checkAssetsLoaded();
+//     });
+//   }
 
 
   loadEnvironmentTexture(path) {
@@ -65,9 +65,9 @@ export class LoaderManager {
 
   // Function to check if all assets are loaded
   checkAssetsLoaded() {
-    const { backgroundTexture, environmentTexture, gltfModel } =
+    const {  environmentTexture, gltfModel } =
       this.loadedAssets;
-    if (backgroundTexture && environmentTexture && gltfModel) {
+    if ( environmentTexture && gltfModel) {
       this.addAssetsToScene();
     }
   }
@@ -83,6 +83,7 @@ export class LoaderManager {
 
       // Add the GLTF model to the scene
       const vreeObject = this.loadedAssets.gltfModel.children[0];
+      console.log(vreeObject, "vreeObject");
       vreeObject.position.z = 1;
       this.scene.add(vreeObject);
 

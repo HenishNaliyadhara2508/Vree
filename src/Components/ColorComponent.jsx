@@ -3,10 +3,10 @@ import CustomLens from "./Utils/CustomLens";
 import CustomFrame from "./Utils/CustomFrame";
 import CustomTemple from "./Utils/CustomTemple";
 import { useState } from "react";
-// import { SketchPicker } from "react-color";
+import { SketchPicker } from "react-color";
 
 const ColorComponent = ({ selectedSection }) => {
-  const [selectedColor, setSelectedColor] = useState(null);
+  const [selectedColor, setSelectedColor] = useState("#FFFFFF");
   const [showColorPicker, setShowColorPicker] = useState(false); // For showing the color picker
   const colors = [
     "#FFFFFF",
@@ -24,8 +24,8 @@ const ColorComponent = ({ selectedSection }) => {
       CustomFrame.updateFrameColor(color.hex);
     } else if (selectedSection === "temple") {
       CustomTemple.updateTempleColor(color.hex);
-    } else if (selectedSection === "lense") {
-      CustomLens.updateLenseColor(color.hex);
+    } else if (selectedSection === "lenses") {
+      CustomLens.updateLensesColor(color.hex);
     }
   };
 
@@ -35,13 +35,15 @@ const ColorComponent = ({ selectedSection }) => {
 
   return (
     <>
-      <div className="flex flex-col items-center p-4">
+        
+      <div className="flex flex-col p-4 ">
+      <div className="text-xl text-white font-semibold ">Color</div>
         {/* Color palette */}
-        <div className="flex space-x-4 mb-4">
+        <div className="flex flex-wrap gap-15">
           {colors.map((color, index) => (
             <div
               key={index}
-              className={`w-13 h-13 rounded-full bg-cover bg-center transition-all duration-300 ${
+              className={`w-10 h-10 rounded-full bg-cover bg-center transition-all duration-300 ${
                 selectedColor === color
                   ? "border-4 border-blue-500"
                   : "hover:border-4 hover:border-white"
@@ -64,14 +66,14 @@ const ColorComponent = ({ selectedSection }) => {
           ))}
         </div>
 
-        {/* {showColorPicker && (
-          <div className="absolute top-60 left-100 z-50">
+        {showColorPicker && (
+          <div className="absolute top-100 mx-10">
             <SketchPicker
               color={selectedColor} 
               onChangeComplete={handleColorSelect} 
             />
           </div>
-        )} */}
+        )}
       </div>
     </>
   );

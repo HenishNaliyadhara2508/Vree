@@ -13,6 +13,12 @@ const TextureComponent = ({ selectedSection }) => {
     { path: "/assets/texture/texture3.jpg", name: "texture3" },
   ];
 
+  // Determine which textures to show based on the selected section
+  const texturesToShow =
+    selectedSection === "frame"
+      ? [...availableTextures.slice(0, 3), availableTextures[4]] // Replace 4th texture with the 5th for frame
+      : availableTextures.slice(0, 4); // Show only the first 4 textures for temple
+
   const handleTextureSelection = (name, path) => {
     console.log(`Selected Texture: ${name} at ${path}`);
     setSelectedTexture(name);
@@ -28,12 +34,12 @@ const TextureComponent = ({ selectedSection }) => {
 
   return (
     <div className="p-4">
-      <h2 className="text-xl font-semibold mb-4">Choose Texture</h2>
-      <div className="grid grid-cols-4 gap-4">
-        {availableTextures.map((texture) => (
+      <div className="text-xl text-white font-semibold mb-2">Texture</div>
+      <div className="flex flex-wrap gap-15 mb-2">
+        {texturesToShow.map((texture) => (
           <div
             key={texture.name}
-            className={`relative cursor-pointer w-24 h-24 rounded-lg transition-all duration-300 ${
+            className={`relative cursor-pointer w-10 h-10 rounded-full transition-all duration-300 ${
               selectedTexture === texture.name
                 ? "border-4 border-blue-500 shadow-lg scale-105"
                 : "hover:border-4 hover:border-white hover:scale-110"
@@ -43,16 +49,11 @@ const TextureComponent = ({ selectedSection }) => {
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
-            onClick={() =>
-              handleTextureSelection(texture.name, texture.path)
-            }
+            onClick={() => handleTextureSelection(texture.name, texture.path)}
           >
             {selectedTexture === texture.name && (
-              <div className="absolute inset-0 bg-black opacity-40 rounded-lg"></div>
+              <div className="absolute inset-0 bg-black opacity-40 rounded-3xl"></div>
             )}
-            <span className="absolute bottom-2 left-2 text-white text-sm font-bold bg-black bg-opacity-60 px-2 py-1 rounded-md">
-              {texture.name}
-            </span>
           </div>
         ))}
       </div>
