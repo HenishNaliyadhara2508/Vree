@@ -3,7 +3,7 @@ import CustomFrame from "./Utils/CustomFrame";
 import CustomTemple from "./Utils/CustomTemple";
 
 const TextureComponent = ({ selectedSection }) => {
-  const [selectedTexture, setSelectedTexture] = useState(null);
+  const [selectedTexture, setSelectedTexture] = useState("original.jpg");
 
   const availableTextures = [
     { path: "/assets/texture/null_image.svg", name: "null" },

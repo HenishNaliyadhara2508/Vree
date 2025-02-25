@@ -1,4 +1,226 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
+// import TextureComponent from "./TextureComponent";
+// import ColorComponent from "./ColorComponent";
+// import MaterialProgessBar from "./MaterialProgressBar";
+// import { vreeStore } from "../VreeStore";
+// import CustomFrame from "./Utils/CustomFrame";
+// import CustomTemple from "./Utils/CustomTemple";
+// import CustomLens from "./Utils/CustomLens";
+// import { observer } from "mobx-react-lite";
+
+// const SideBarComponent = observer(() => {
+//   const [selectedSection, setSelectedSection] = useState("frame");
+
+//   // Handle selecting a section (Frame, Temple, or Lenses)
+//   const handleSectionSelect = (section) => {
+//     setSelectedSection(section);
+//   };
+
+//   // Render different properties based on the selected section
+//   const renderProperties = () => {
+//     switch (selectedSection) {
+//       case "frame":
+//         return (
+//           <>
+//             <div className={`font-semibold p-4 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}>Texture</div>
+//             <TextureComponent selectedSection={selectedSection} />
+//             <div className={`font-semibold p-4 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}>Color</div>
+//             <ColorComponent selectedSection={selectedSection} />
+//             <div className={`font-semibold p-4 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}>
+//               Material Properties
+//             </div>
+//             <div className={`font-semibold p-5 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}>
+//               <MaterialProgessBar
+//                 name="Metalic"
+//                 value={vreeStore.frameMetalness}
+//                 onChange={CustomFrame.updateFrameMetalness}
+//               />
+//             </div>
+//             <div className={`font-semibold p-5 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}>
+//               <MaterialProgessBar
+//                 name="Roughness"
+//                 value={vreeStore.frameRoughness}
+//                 onChange={CustomFrame.updateFrameRoughness}
+//               />
+//             </div>
+//             <div className={`font-semibold p-5 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}>
+//               <MaterialProgessBar
+//                 name="Transparency"
+//                 value={vreeStore.frameTransparency}
+//                 onChange={CustomFrame.updateFrameTransparency}
+//               />
+//             </div>
+//           </>
+//         );
+//       case "temple":
+//         return (
+//           <>
+//             <div className={`font-semibold p-4 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}>Texture</div>
+//             <TextureComponent selectedSection={selectedSection} />
+//             <div className={`font-semibold p-4 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}>Color</div>
+//             <ColorComponent selectedSection={selectedSection} />
+//             <div className={`font-semibold p-4 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}>
+//               Material Properties
+//             </div>
+//             <div className={`font-semibold p-5 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}>
+//               <MaterialProgessBar
+//                 name="Metalic"
+//                 value={vreeStore.templeMetalness}
+//                 onChange={CustomTemple.updateTempleMetalness}
+//               />
+//             </div>
+//             <div className={`font-semibold p-5 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}>
+//               <MaterialProgessBar
+//                 name="Roughness"
+//                 value={vreeStore.templeRoughness}
+//                 onChange={CustomTemple.updateTempleRoughness}
+//               />
+//             </div>
+//             <div className={`font-semibold p-5 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}>
+//               <MaterialProgessBar
+//                 name="Transparency"
+//                 value={vreeStore.templeTransparency}
+//                 onChange={CustomTemple.updateTempleTransparency}
+//               />
+//             </div>
+//           </>
+//         );
+//       case "lenses":
+//         return (
+//           <>
+//             <div className={`font-semibold p-4 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}>Color</div>
+//             <ColorComponent selectedSection="lenses" />
+//             <div className={`font-semibold p-4 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}>
+//               Material Properties
+//             </div>
+//             <div className={`font-semibold p-5 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}>
+//               <MaterialProgessBar
+//                 name="Transparency"
+//                 value={vreeStore.lensTransparency}
+//                 onChange={CustomLens.updateLensesTransparency}
+//               />
+//             </div>
+//           </>
+//         );
+//       default:
+//         return null;
+//     }
+//   };
+
+//   const handleReset = () => {
+//     vreeStore.resetAllProperties();
+//   };
+
+//   const handleSave = () => {
+//     const jsonData = vreeStore.saveToJSON();
+//     console.log("Saved Data: ", JSON.stringify(jsonData, null, 2));
+
+//     // Optionally, you can send the JSON to a server or store it in a file
+//     // Example: Save the file locally (in browser) as JSON
+//     const blob = new Blob([JSON.stringify(jsonData, null, 2)], { type: "application/json" });
+//     const link = document.createElement("a");
+//     link.href = URL.createObjectURL(blob);
+//     link.download = "savedData.json";
+//     link.click();
+//   };
+
+
+//   return (
+//     <div
+//       style={{
+//         backgroundImage: 'url("/assets/background/sidebarbg.png")',
+//         backgroundSize: "cover",
+//         backgroundPosition: "center",
+//         padding: "10px",
+//       }}
+//       className="absolute right-0 top-10 bottom-10 m-10 rounded-lg w-125 border border-gray-400"
+//     >
+//       <div
+//         className={`flex justify-between p-2 h-10  ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}
+//         style={{
+//           display: "flex",
+//           justifyContent: "space-between",
+//         //   transition: "all 0.3s ease",
+//           position: "sticky",
+//           top: "0",
+//           zIndex: "10",
+//         }}
+//       >
+//         <div
+//           className={`cursor-pointer ${selectedSection === "frame" ? "text-lg" : ""}`}
+//           onClick={() => handleSectionSelect("frame")}
+//           style={{
+//             flex: 1,
+//             textAlign: "center",
+//             transition: "all 0.3s ease",
+//             transform: selectedSection === "frame" ? "scale(1.2)" : "scale(1)",
+//             opacity: selectedSection === "frame" ? 1 : 0.7,
+//           }}
+//         >
+//           &larr; Frame
+//         </div>
+
+//         <div
+//           className={`cursor-pointer ${selectedSection === "temple" ? "text-lg" : ""}`}
+//           onClick={() => handleSectionSelect("temple")}
+//           style={{
+//             flex: 1,
+//             textAlign: "center",
+//             transition: "all 0.3s ease",
+//             transform: selectedSection === "temple" ? "scale(1.2)" : "scale(1)",
+//             opacity: selectedSection === "temple" ? 1 : 0.7,
+//           }}
+//         >
+//           Temple
+//         </div>
+
+//         <div
+//           className={`cursor-pointer ${selectedSection === "lenses" ? "text-lg" : ""}`}
+//           onClick={() => handleSectionSelect("lenses")}
+//           style={{
+//             flex: 1,
+//             textAlign: "center",
+//             transition: "all 0.3s ease",
+//             transform: selectedSection === "lenses" ? "scale(1.2)" : "scale(1)",
+//             opacity: selectedSection === "lenses" ? 1 : 0.7,
+//           }}
+//         >
+//           Lenses &rarr;
+//         </div>
+//       </div>
+
+//       <div className="border-b border-violet-600"></div>
+
+//       {/* Scrollable properties section */}
+//       <div className="overflow-y-auto h-[calc(100vh-300px)]">
+//         {renderProperties()}
+//       </div>
+
+//       <div className="border-b border-gray-600"></div>
+
+//       <div className="flex justify-between p-4 gap-1">
+//   <div
+//     className={`bg-gray-600 p-2 w-1/2 border rounded text-center ${vreeStore.isDarkMode ? "text-white border-gray-600 hover:bg-gray-700 hover:text-gray-200" : "text-black bg-white border-gray-300 hover:bg-gray-900 hover:text-white "}`}
+//     onClick={handleReset}
+//   >
+//     Reset
+//   </div>
+//   <div
+//     className={`text-violet-600 border border-violet-600 p-2 w-1/2 rounded text-center hover:bg-violet-700 hover:text-white ${vreeStore.isDarkMode ? "bg-gray-600 " : "bg-white "}`}
+//     onClick={handleSave}
+//   >
+//     Save
+//   </div>
+// </div>
+
+//     </div>
+//   );
+// });
+
+// export default SideBarComponent;
+
+
+import React from "react";
 import TextureComponent from "./TextureComponent";
 import ColorComponent from "./ColorComponent";
 import MaterialProgessBar from "./MaterialProgressBar";
@@ -8,46 +230,44 @@ import CustomTemple from "./Utils/CustomTemple";
 import CustomLens from "./Utils/CustomLens";
 import { observer } from "mobx-react-lite";
 
-const SideBarComponent = observer((onSectionChange) => {
-  const [selectedSection, setSelectedSection] = useState("frame");
+const SideBarComponent = observer(() => {
 
   // Handle selecting a section (Frame, Temple, or Lenses)
   const handleSectionSelect = (section) => {
-    setSelectedSection(section);
-    onSectionChange(section);
+    vreeStore.setSelectedSection(section); // Updating global state directly
   };
 
   // Render different properties based on the selected section
   const renderProperties = () => {
-    switch (selectedSection) {
+    switch (vreeStore.selectedSection) {
       case "frame":
         return (
           <>
             <div className={`font-semibold p-4 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}>Texture</div>
-            <TextureComponent selectedSection={selectedSection} />
+            <TextureComponent selectedSection={vreeStore.selectedSection} />
             <div className={`font-semibold p-4 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}>Color</div>
-            <ColorComponent selectedSection={selectedSection} />
-            <div className={`font-semibold p-4 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}>
+            <ColorComponent selectedSection={vreeStore.selectedSection} />
+            <div className={`font-semibold p-4 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`} >
               Material Properties
             </div>
-            <div className={`font-semibold p-5 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}>
+            <div className={`font-semibold p-5 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`} >
               <MaterialProgessBar
                 name="Metalic"
                 value={vreeStore.frameMetalness}
                 onChange={CustomFrame.updateFrameMetalness}
               />
             </div>
-            <div className={`font-semibold p-5 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}>
+            <div className={`font-semibold p-5 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`} >
               <MaterialProgessBar
                 name="Roughness"
                 value={vreeStore.frameRoughness}
                 onChange={CustomFrame.updateFrameRoughness}
               />
             </div>
-            <div className={`font-semibold p-5 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}>
+            <div className={`font-semibold p-5 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`} >
               <MaterialProgessBar
                 name="Transparency"
-                value={vreeStore.frameOpacity}
+                value={vreeStore.frameTransparency}
                 onChange={CustomFrame.updateFrameTransparency}
               />
             </div>
@@ -57,27 +277,27 @@ const SideBarComponent = observer((onSectionChange) => {
         return (
           <>
             <div className={`font-semibold p-4 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}>Texture</div>
-            <TextureComponent selectedSection={selectedSection} />
+            <TextureComponent selectedSection={vreeStore.selectedSection} />
             <div className={`font-semibold p-4 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}>Color</div>
-            <ColorComponent selectedSection={selectedSection} />
-            <div className={`font-semibold p-4 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}>
+            <ColorComponent selectedSection={vreeStore.selectedSection} />
+            <div className={`font-semibold p-4 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`} >
               Material Properties
             </div>
-            <div className={`font-semibold p-5 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}>
+            <div className={`font-semibold p-5 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`} >
               <MaterialProgessBar
                 name="Metalic"
                 value={vreeStore.templeMetalness}
                 onChange={CustomTemple.updateTempleMetalness}
               />
             </div>
-            <div className={`font-semibold p-5 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}>
+            <div className={`font-semibold p-5 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`} >
               <MaterialProgessBar
                 name="Roughness"
                 value={vreeStore.templeRoughness}
                 onChange={CustomTemple.updateTempleRoughness}
               />
             </div>
-            <div className={`font-semibold p-5 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}>
+            <div className={`font-semibold p-5 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`} >
               <MaterialProgessBar
                 name="Transparency"
                 value={vreeStore.templeTransparency}
@@ -91,10 +311,10 @@ const SideBarComponent = observer((onSectionChange) => {
           <>
             <div className={`font-semibold p-4 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}>Color</div>
             <ColorComponent selectedSection="lenses" />
-            <div className={`font-semibold p-4 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}>
+            <div className={`font-semibold p-4 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`} >
               Material Properties
             </div>
-            <div className={`font-semibold p-5 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}>
+            <div className={`font-semibold p-5 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`} >
               <MaterialProgessBar
                 name="Transparency"
                 value={vreeStore.lensTransparency}
@@ -109,7 +329,19 @@ const SideBarComponent = observer((onSectionChange) => {
   };
 
   const handleReset = () => {
-    vreeStore.resetAllProperties();
+    vreeStore.resetAllProperties(); // Reset properties via global state
+  };
+
+  const handleSave = () => {
+    const jsonData = vreeStore.saveToJSON(); // Get data from global state
+    console.log("Saved Data: ", JSON.stringify(jsonData, null, 2));
+
+    // Optionally, you can send the JSON to a server or store it in a file
+    const blob = new Blob([JSON.stringify(jsonData, null, 2)], { type: "application/json" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "savedData.json";
+    link.click();
   };
 
   return (
@@ -127,49 +359,48 @@ const SideBarComponent = observer((onSectionChange) => {
         style={{
           display: "flex",
           justifyContent: "space-between",
-        //   transition: "all 0.3s ease",
           position: "sticky",
           top: "0",
           zIndex: "10",
         }}
       >
         <div
-          className={`cursor-pointer ${selectedSection === "frame" ? "text-lg" : ""}`}
+          className={`cursor-pointer ${vreeStore.selectedSection === "frame" ? "text-lg" : ""}`}
           onClick={() => handleSectionSelect("frame")}
           style={{
             flex: 1,
             textAlign: "center",
             transition: "all 0.3s ease",
-            transform: selectedSection === "frame" ? "scale(1.2)" : "scale(1)",
-            opacity: selectedSection === "frame" ? 1 : 0.7,
+            transform: vreeStore.selectedSection === "frame" ? "scale(1.2)" : "scale(1)",
+            opacity: vreeStore.selectedSection === "frame" ? 1 : 0.7,
           }}
         >
           &larr; Frame
         </div>
 
         <div
-          className={`cursor-pointer ${selectedSection === "temple" ? "text-lg" : ""}`}
+          className={`cursor-pointer ${vreeStore.selectedSection === "temple" ? "text-lg" : ""}`}
           onClick={() => handleSectionSelect("temple")}
           style={{
             flex: 1,
             textAlign: "center",
             transition: "all 0.3s ease",
-            transform: selectedSection === "temple" ? "scale(1.2)" : "scale(1)",
-            opacity: selectedSection === "temple" ? 1 : 0.7,
+            transform: vreeStore.selectedSection === "temple" ? "scale(1.2)" : "scale(1)",
+            opacity: vreeStore.selectedSection === "temple" ? 1 : 0.7,
           }}
         >
           Temple
         </div>
 
         <div
-          className={`cursor-pointer ${selectedSection === "lenses" ? "text-lg" : ""}`}
+          className={`cursor-pointer ${vreeStore.selectedSection === "lenses" ? "text-lg" : ""}`}
           onClick={() => handleSectionSelect("lenses")}
           style={{
             flex: 1,
             textAlign: "center",
             transition: "all 0.3s ease",
-            transform: selectedSection === "lenses" ? "scale(1.2)" : "scale(1)",
-            opacity: selectedSection === "lenses" ? 1 : 0.7,
+            transform: vreeStore.selectedSection === "lenses" ? "scale(1.2)" : "scale(1)",
+            opacity: vreeStore.selectedSection === "lenses" ? 1 : 0.7,
           }}
         >
           Lenses &rarr;
@@ -186,26 +417,24 @@ const SideBarComponent = observer((onSectionChange) => {
       <div className="border-b border-gray-600"></div>
 
       <div className="flex justify-between p-4 gap-1">
-  <div
-    className={`bg-gray-600 p-2 w-1/2 border rounded text-center ${vreeStore.isDarkMode ? "text-white border-gray-600 hover:bg-gray-700 hover:text-gray-200" : "text-black bg-white border-gray-300 hover:bg-gray-900 hover:text-white "}`}
-    onClick={handleReset}
-  >
-    Reset
-  </div>
-  <div
-    className={`text-violet-600 border border-violet-600 p-2 w-1/2 rounded text-center hover:bg-violet-700 hover:text-white ${vreeStore.isDarkMode ? "bg-gray-600 " : "bg-white "}`}
-  >
-    Save
-  </div>
-</div>
-
+        <div
+          className={`bg-gray-600 p-2 w-1/2 border rounded text-center ${vreeStore.isDarkMode ? "text-white border-gray-600 hover:bg-gray-700 hover:text-gray-200" : "text-black bg-white border-gray-300 hover:bg-gray-900 hover:text-white "}`}
+          onClick={handleReset}
+        >
+          Reset
+        </div>
+        <div
+          className={`text-violet-600 border border-violet-600 p-2 w-1/2 rounded text-center hover:bg-violet-700 hover:text-white ${vreeStore.isDarkMode ? "" : ""}`}
+          onClick={handleSave}
+        >
+          Save
+        </div>
+      </div>
     </div>
   );
 });
 
 export default SideBarComponent;
-
-
 
 
 

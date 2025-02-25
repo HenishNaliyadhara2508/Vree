@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { vreeStore } from "../../VreeStore";
 
+
 class CustomTemple {
   constructor() {
     vreeStore.templeMesh = [
@@ -18,7 +19,7 @@ class CustomTemple {
     vreeStore.templeTexture = textureName;
     const loader = new THREE.TextureLoader();
     loader.load(texturePath, (texture) => {
-      texture.colorSpace = THREE.SRGBColorSpace;
+      // texture.colorSpace = THREE.SRGBColorSpace;
       vreeStore.templeMesh[0].material.map = texture;
       vreeStore.templeMesh[1].material.map = texture;
     });
@@ -52,8 +53,8 @@ class CustomTemple {
 
   static updateTempleTransparency(transparency) {
     vreeStore.templeTransparency = transparency;
-    vreeStore.templeMesh[0].material.opacity = transparency;
-    vreeStore.templeMesh[1].material.opacity = transparency;
+    vreeStore.templeMesh[0].material.opacity = 1 - transparency;
+    vreeStore.templeMesh[1].material.opacity = 1 - transparency;
 
 
     vreeStore.templeMesh[0].material.transparent = true;

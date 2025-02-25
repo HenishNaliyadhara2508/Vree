@@ -8,7 +8,7 @@ const MaterialProgessBar = observer(({name, value, onChange }) => {
 
   // Convert value to index
   const valueIndex = values.indexOf(value);
-  const [selectedIndex, setSelectedIndex] = useState(valueIndex !== -1 ? valueIndex : 2);
+  const [selectedIndex, setSelectedIndex] = useState(valueIndex !== -1 ? valueIndex : 0);
   const [hover, setHover] = useState(false); // Hover state for label
 
   useEffect(() => {
