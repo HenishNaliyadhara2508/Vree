@@ -8,12 +8,13 @@ import CustomTemple from "./Utils/CustomTemple";
 import CustomLens from "./Utils/CustomLens";
 import { observer } from "mobx-react-lite";
 
-const SideBarComponent = observer(() => {
+const SideBarComponent = observer((onSectionChange) => {
   const [selectedSection, setSelectedSection] = useState("frame");
 
   // Handle selecting a section (Frame, Temple, or Lenses)
   const handleSectionSelect = (section) => {
     setSelectedSection(section);
+    onSectionChange(section);
   };
 
   // Render different properties based on the selected section

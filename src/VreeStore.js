@@ -15,7 +15,7 @@ class VreeStore {
   templeColor = "#ffffff";
   templeMetalness = 0.1;
   templeRoughness = 0.2;
-  templeTransparency = 0;
+  templeTransparency = 1;
 
   frameTexture = null;
   frameIntialTexture = null;
@@ -64,7 +64,7 @@ class VreeStore {
     this.templeMesh[0].material.roughness = this.templeRoughness;
     this.templeMesh[1].material.roughness = this.templeRoughness;
 
-    this.templeTransparency = 0;
+    this.templeTransparency = 1;
     this.templeMesh[0].material.opacity = this.templeTransparency;
     this.templeMesh[1].material.opacity = this.templeTransparency;
 

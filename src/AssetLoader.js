@@ -100,14 +100,138 @@ import { GLTFLoader } from "three/examples/jsm/Addons.js";
 import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader.js";
 import { vreeStore } from "./VreeStore";
 
+// export class LoaderManager {
+//   constructor() {
+//     this.loadedAssets = {
+//       environmentTexture: false,
+//       gltfModel: false,
+//     };
+//     this.scene = null; 
+//     this.onCompleteCallback = null; 
+//   }
+
+//   setScene(scene) {
+//     this.scene = scene;
+//   }
+
+//   setOnCompleteCallback(callback) {
+//     this.onCompleteCallback = callback;
+//   }
+
+//   loadEnvironmentTexture(path) {
+//     const loader = new RGBELoader();
+//     loader.load(
+//       path,
+//       (texture) => {
+//         texture.mapping = THREE.EquirectangularReflectionMapping;
+//         this.loadedAssets.environmentTexture = texture;
+//         this.checkAssetsLoaded();
+//       },
+//       undefined,
+//       (error) => {
+//         console.error("Error loading HDR texture:", error); // Error handling
+//       }
+//     );
+//   }
+
+//   loadGLTFModel(path) {
+//     const loader = new GLTFLoader();
+//     loader.load(path, (gltf) => {
+//       this.loadedAssets.gltfModel = gltf.scene;
+  
+//       // Assigning to vreeStore
+//       vreeStore.frameMesh = this.loadedAssets.gltfModel.children[0];
+//       vreeStore.lensesMesh = [gltf.scene.getObjectByName("left_lens"), gltf.scene.getObjectByName("right_lens")];
+//       vreeStore.templeMesh = [gltf.scene.getObjectByName("left_temple"), gltf.scene.getObjectByName("right_temple")];
+      
+//       // Log to verify
+//       console.log(vreeStore.frameMesh, vreeStore.lensesMesh, vreeStore.templeMesh);
+  
+//       this.checkAssetsLoaded();
+//     });
+//   }
+  
+
+//   checkAssetsLoaded() {
+//     const { environmentTexture, gltfModel } = this.loadedAssets;
+//     if (environmentTexture && gltfModel) {
+//       this.addAssetsToScene();
+//     }
+//   }
+
+//   addAssetsToScene() {
+//     if (this.scene) {
+//       this.scene.background = this.loadedAssets.backgroundTexture;
+//       this.scene.environment = this.loadedAssets.environmentTexture;
+//       this.scene.add(vreeStore.frameMesh);
+//       this.scene.add(vreeStore.lensesMesh[0]);
+//       this.scene.add(vreeStore.lensesMesh[1]);
+//       this.scene.add(vreeStore.templeMesh[0]);
+//       this.scene.add(vreeStore.templeMesh[1]);
+
+//       if (this.onCompleteCallback) {
+//         this.onCompleteCallback();
+//       }
+//     }
+//   }
+
+//   // Function to highlight the selected mesh with an outline effect
+//   highlightMesh(mesh) {
+//     if (!mesh) return;
+  
+//     const outlineMaterial = new THREE.MeshBasicMaterial({
+//       color: "blue",
+//       side: THREE.BackSide,
+//       transparent: true,
+//       opacity: 0.5,
+//     });
+  
+//     // Create an outline mesh and scale it up slightly
+//     const outline = mesh.clone();
+//     outline.material = outlineMaterial;
+//     outline.scale.set(1.05, 1.05, 1.05); // Slightly scale up for outline effect
+  
+//     // Store the outline to ensure it can be cleared later
+//     mesh.outline = outline;
+  
+//     this.scene.add(outline);
+//     return outline;
+//   }
+  
+
+//   // Function to clear all outlines
+//   clearOutlines() {
+//     if (!this.scene) {
+//       console.warn("Scene is not initialized, cannot clear outlines.");
+//       return;
+//     }
+  
+//     let outlineFound = false;
+  
+//     this.scene.children.forEach(child => {
+//       // Ensure the object is a mesh and has the expected opacity (outline effect)
+//       if (child.material && child.material.opacity === 0.5) {
+//         outlineFound = true;
+//         this.scene.remove(child); // Remove all outline meshes
+//       }
+//     });
+  
+//     if (!outlineFound) {
+//       console.log("No outlines found to clear.");
+//     }
+//   }
+  
+// }
+
 export class LoaderManager {
   constructor() {
     this.loadedAssets = {
       environmentTexture: false,
       gltfModel: false,
     };
-    this.scene = null; 
-    this.onCompleteCallback = null; 
+    this.scene = null;
+    this.onCompleteCallback = null;
+    this.outlines = [];  // Store outlines separately
   }
 
   setScene(scene) {
@@ -129,7 +253,7 @@ export class LoaderManager {
       },
       undefined,
       (error) => {
-        console.error("Error loading HDR texture:", error); // Error handling
+        console.error("Error loading HDR texture:", error);
       }
     );
   }
@@ -138,9 +262,14 @@ export class LoaderManager {
     const loader = new GLTFLoader();
     loader.load(path, (gltf) => {
       this.loadedAssets.gltfModel = gltf.scene;
+      // const meshes = getMeshesFromScene(gltf.scene);;
+      // console.log(meshes, "meshes");
+
+      // Assigning to vreeStore
       vreeStore.frameMesh = this.loadedAssets.gltfModel.children[0];
       vreeStore.lensesMesh = [gltf.scene.getObjectByName("left_lens"), gltf.scene.getObjectByName("right_lens")];
       vreeStore.templeMesh = [gltf.scene.getObjectByName("left_temple"), gltf.scene.getObjectByName("right_temple")];
+
       this.checkAssetsLoaded();
     });
   }
@@ -168,31 +297,5 @@ export class LoaderManager {
     }
   }
 
-  // Function to highlight the selected mesh with an outline effect
-  highlightMesh(mesh) {
-    if (!mesh) return;
-
-    const outlineMaterial = new THREE.MeshBasicMaterial({
-      color: 0xffff00,
-      side: THREE.BackSide,
-      transparent: true,
-      opacity: 0.5,
-    });
-
-    const outline = mesh.clone();
-    outline.material = outlineMaterial;
-    outline.scale.set(1.05, 1.05, 1.05); // Slightly scale up for outline effect
-
-    this.scene.add(outline);
-    return outline;
-  }
-
-  // Function to clear all outlines
-  clearOutlines() {
-    this.scene.children.forEach(child => {
-      if (child.material && child.material.opacity === 0.5) {
-        this.scene.remove(child); // Remove all outline meshes
-      }
-    });
-  }
 }
+
