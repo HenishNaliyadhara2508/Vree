@@ -184,6 +184,7 @@ const MainCanvasVree = observer(() => {
       alpha: true,
     });
     renderer.setSize(window.innerWidth * 0.6, window.innerHeight);
+    renderer.shadowMap.enabled = true; // Enable shadow mapping
 
     // Set up asset loader
     const loader = new LoaderManager();
@@ -217,22 +218,29 @@ const MainCanvasVree = observer(() => {
     outlinePass.edgeStrength = 2; // Adjust the outline strength
     outlinePass.edgeGlow = 1;      // Glow effect for outlines
     outlinePass.edgeThickness = 1; // Reduce the thickness of the outline
-    // outlinePass.pulsePeriod = 0;   // Set pulse period to 0 if you don’t want it pulsing
-
     outlinePass.visibleEdgeColor.set("#a774ff");
     composer.addPass(outlinePass);
 
     composerRef.current = composer;
     outlinePassRef.current = outlinePass;
 
-    // Create a plane that serves as the ground
-    const planeGeometry = new THREE.PlaneGeometry(10, 10); // Size of the plane
-    const planeMaterial = new THREE.ShadowMaterial({ opacity: 0.5 ,color: 0x000000}); // Set a shadow material
-    const plane = new THREE.Mesh(planeGeometry, planeMaterial);
-    plane.rotation.x = -Math.PI / 2; // Rotate the plane to lie flat
-    plane.position.y = -1; // Position the plane slightly below the objects
-    plane.receiveShadow = true; // Enable the plane to receive shadows
-    scene.add(plane);
+    // Create the shadow plane with MeshStandardMaterial to interact with shadows
+
+    const textureLoader = new THREE.TextureLoader();
+    const simpleShadow = textureLoader.load("/assets/shadow/shadow.jpg");
+
+    const sphereShadow = new THREE.Mesh(
+      new THREE.PlaneGeometry(1, 1),
+      new THREE.MeshBasicMaterial({
+        color: 0x000000,
+        transparent: true,
+        alphaMap: simpleShadow,
+      })
+    );
+    sphereShadow.rotation.x = -Math.PI * 0.5;
+    sphereShadow.position.set(0, -0.5, -1);
+    sphereShadow.scale.set(5, 3, 5);
+    scene.add(sphereShadow);
 
     // Animation loop
     const startRendering = () => {
@@ -262,6 +270,7 @@ const MainCanvasVree = observer(() => {
       outlinePassRef.current.selectedObjects = [vreeStore.frameMesh];
       vreeStore.frameMesh.renderOrder = 1; // Ensure frame mesh appears in front
       vreeStore.frameMesh.material.side = THREE.FrontSide; // Ensure only front side is rendered
+      vreeStore.frameMesh.castShadow = true; // Enable shadow casting for the frame
     } else {
       console.warn("Frame mesh not loaded yet.");
     }
@@ -272,6 +281,7 @@ const MainCanvasVree = observer(() => {
     vreeStore.lensesMesh.forEach((mesh) => {
       mesh.renderOrder = 1;
       mesh.material.side = THREE.FrontSide; // Only render the front side for lenses
+      mesh.castShadow = true; // Enable shadow casting for lenses
     });
   };
 
@@ -280,6 +290,7 @@ const MainCanvasVree = observer(() => {
     vreeStore.templeMesh.forEach((mesh) => {
       mesh.renderOrder = 1;
       mesh.material.side = THREE.FrontSide; // Only render the front side for temple meshes
+      mesh.castShadow = true; // Enable shadow casting for temples
     });
   };
 
@@ -296,6 +307,7 @@ const MainCanvasVree = observer(() => {
 });
 
 export default MainCanvasVree;
+
 
 // import { useRef, useEffect } from "react";
 // import * as THREE from "three";
