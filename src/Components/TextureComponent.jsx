@@ -34,7 +34,7 @@ const TextureComponent = ({ selectedSection }) => {
 
   return (
     <div className="p-4">
-      <div className="text-xl text-white font-semibold mb-2">Texture</div>
+      
       <div className="flex flex-wrap gap-15 mb-2">
         {texturesToShow.map((texture) => (
           <div

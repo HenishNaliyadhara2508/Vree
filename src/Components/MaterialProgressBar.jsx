@@ -1,5 +1,6 @@
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
+import { vreeStore } from "../VreeStore";
 
 const MaterialProgessBar = observer(({name, value, onChange }) => {
   const values = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0];
@@ -31,7 +32,7 @@ const MaterialProgessBar = observer(({name, value, onChange }) => {
 
   return (
     <div className="flex items-center">
-        <div className="text-white  ms-5 mt-5 me-10">{name}</div>
+        <div className={`font-semibold p-4 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}>{name}</div>
     <div className="flex flex-col items-center w-full flex-grow gap-4 mt-10 px-2">
       <div className="relative flex items-center w-full max-w-lg">
         <div className="absolute left-0 right-0 h-1 bg-gray-500 rounded-full" />

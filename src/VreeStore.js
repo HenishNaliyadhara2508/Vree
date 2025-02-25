@@ -5,6 +5,7 @@ class VreeStore {
   frameMesh = null;
   lensesMesh = [];
   templeMesh = [];
+  isDarkMode = true;
 
   lensColor = "#ffffff";
   lensTransparency = 0;
@@ -27,6 +28,9 @@ class VreeStore {
     makeAutoObservable(this);
   }
 
+  toggleDarkMode() {
+    this.isDarkMode = !this.isDarkMode;
+  }
   resetAllProperties() {
     // Resetting Lens Properties
     this.lensColor = "#ffffff";
@@ -90,6 +94,41 @@ class VreeStore {
     this.templeMesh[1].material.needsUpdate = true;
     this.lensesMesh[0].material.needsUpdate = true;
     this.lensesMesh[1].material.needsUpdate = true;
+}
+
+setFrameTexture(textureName) {
+  this.frameTexture = textureName;
+}
+setFrameMetalness(metalness) {
+  this.frameMetalness = metalness;
+}
+
+setFrameColor(color) {
+  this.frameColor = color;
+}
+
+setFrameTransparency(transparency) {
+  this.frameTransparency = transparency;
+}
+
+setTempleMetalness(metalness) {
+  this.templeMetalness = metalness;
+}
+
+setTempleColor(color) {
+  this.templeColor = color;
+}
+
+setTempleTransparency(transparency) {
+  this.templeTransparency = transparency;
+}
+
+setLensColor(color) {
+  this.lensColor = color;
+}
+
+setLensTransparency(transparency) {
+  this.lensTransparency = transparency;
 }
 
 

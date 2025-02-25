@@ -6,8 +6,9 @@ import { vreeStore } from "../VreeStore";
 import CustomFrame from "./Utils/CustomFrame";
 import CustomTemple from "./Utils/CustomTemple";
 import CustomLens from "./Utils/CustomLens";
+import { observer } from "mobx-react-lite";
 
-const SideBarComponent = () => {
+const SideBarComponent = observer(() => {
   const [selectedSection, setSelectedSection] = useState("frame");
 
   // Handle selecting a section (Frame, Temple, or Lenses)
@@ -21,28 +22,28 @@ const SideBarComponent = () => {
       case "frame":
         return (
           <>
+            <div className={`font-semibold p-4 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}>Texture</div>
             <TextureComponent selectedSection={selectedSection} />
+            <div className={`font-semibold p-4 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}>Color</div>
             <ColorComponent selectedSection={selectedSection} />
-            <div className="text-white font-semibold p-4">
+            <div className={`font-semibold p-4 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}>
               Material Properties
             </div>
-            <div className="text-white font-semibold p-5">
+            <div className={`font-semibold p-5 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}>
               <MaterialProgessBar
                 name="Metalic"
                 value={vreeStore.frameMetalness}
                 onChange={CustomFrame.updateFrameMetalness}
               />
-              {console.log(vreeStore.frameMetalness)}
-              {/* {console.log(CustomFrame.updateFrameMetalness())} */}
             </div>
-            <div className="text-white font-semibold p-5">
+            <div className={`font-semibold p-5 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}>
               <MaterialProgessBar
                 name="Roughness"
                 value={vreeStore.frameRoughness}
                 onChange={CustomFrame.updateFrameRoughness}
               />
             </div>
-            <div className="text-white font-semibold p-5">
+            <div className={`font-semibold p-5 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}>
               <MaterialProgessBar
                 name="Transparency"
                 value={vreeStore.frameOpacity}
@@ -54,26 +55,28 @@ const SideBarComponent = () => {
       case "temple":
         return (
           <>
+            <div className={`font-semibold p-4 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}>Texture</div>
             <TextureComponent selectedSection={selectedSection} />
+            <div className={`font-semibold p-4 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}>Color</div>
             <ColorComponent selectedSection={selectedSection} />
-            <div className="text-white font-semibold p-4">
+            <div className={`font-semibold p-4 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}>
               Material Properties
             </div>
-            <div className="text-white font-semibold p-5">
+            <div className={`font-semibold p-5 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}>
               <MaterialProgessBar
                 name="Metalic"
                 value={vreeStore.templeMetalness}
                 onChange={CustomTemple.updateTempleMetalness}
               />
             </div>
-            <div className="text-white font-semibold p-5">
+            <div className={`font-semibold p-5 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}>
               <MaterialProgessBar
                 name="Roughness"
                 value={vreeStore.templeRoughness}
                 onChange={CustomTemple.updateTempleRoughness}
               />
             </div>
-            <div className="text-white font-semibold p-5">
+            <div className={`font-semibold p-5 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}>
               <MaterialProgessBar
                 name="Transparency"
                 value={vreeStore.templeTransparency}
@@ -85,11 +88,12 @@ const SideBarComponent = () => {
       case "lenses":
         return (
           <>
+            <div className={`font-semibold p-4 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}>Color</div>
             <ColorComponent selectedSection="lenses" />
-            <div className="text-white font-semibold p-4">
+            <div className={`font-semibold p-4 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}>
               Material Properties
             </div>
-            <div className="text-white font-semibold p-5">
+            <div className={`font-semibold p-5 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}>
               <MaterialProgessBar
                 name="Transparency"
                 value={vreeStore.lensTransparency}
@@ -108,105 +112,109 @@ const SideBarComponent = () => {
   };
 
   return (
-    <>
+    <div
+      style={{
+        backgroundImage: 'url("/assets/background/sidebarbg.png")',
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        padding: "10px",
+      }}
+      className="absolute right-0 top-10 bottom-10 m-10 rounded-lg w-125 border border-gray-400"
+    >
       <div
+        className={`flex justify-between p-2 h-10  ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}
         style={{
-          backgroundImage: 'url("/assets/background/sidebarbg.png")',
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          padding: "10px",
+          display: "flex",
+          justifyContent: "space-between",
+        //   transition: "all 0.3s ease",
+          position: "sticky",
+          top: "0",
+          zIndex: "10",
         }}
-        className="absolute right-0 top-10 bottom-10 m-10 rounded-lg w-125  border border-gray-400" // Fixed height to fit screen
       >
         <div
-          className="flex justify-between text-white p-2 h-10  transition-all duration-300"
+          className={`cursor-pointer ${selectedSection === "frame" ? "text-lg" : ""}`}
+          onClick={() => handleSectionSelect("frame")}
           style={{
-            display: "flex",
-            justifyContent: "space-between",
-            transition: "all 0.3s ease-in-out",
-            position: "sticky",
-            top: "0", // Fix the top section
-            zIndex: "10", // To ensure it stands out
+            flex: 1,
+            textAlign: "center",
+            transition: "all 0.3s ease",
+            transform: selectedSection === "frame" ? "scale(1.2)" : "scale(1)",
+            opacity: selectedSection === "frame" ? 1 : 0.7,
           }}
         >
-          <div
-            className={`cursor-pointer ${
-              selectedSection === "frame" ?  " text-lg" : ""
-            }`}
-            onClick={() => handleSectionSelect("frame")}
-            style={{
-              flex: 1,
-              textAlign: "center",
-              transition: "all 0.3s ease",
-              transform:
-                selectedSection === "frame" ? "scale(1.2)" : "scale(1)",
-              opacity: selectedSection === "frame" ? 1 : 0.7,
-            }}
-          >
-           &larr; Frame
-          </div>
-
-          <div
-            className={`cursor-pointer ${
-              selectedSection === "temple" ?  " text-lg" : ""
-            }`}
-            onClick={() => handleSectionSelect("temple")}
-            style={{
-              flex: 1,
-              textAlign: "center",
-              transition: "all 0.3s ease",
-              transform:
-                selectedSection === "temple" ? "scale(1.2)" : "scale(1)",
-              opacity: selectedSection === "temple" ? 1 : 0.7,
-            }}
-          >
-            Temple
-          </div>
-
-          <div
-            className={`cursor-pointer ${
-              selectedSection === "lenses" ? " text-lg" : ""
-            }`}
-            onClick={() => handleSectionSelect("lenses")}
-            style={{
-              flex: 1,
-              textAlign: "center",
-              transition: "all 0.3s ease",
-              transform:
-                selectedSection === "lenses" ? "scale(1.2)" : "scale(1)",
-              opacity: selectedSection === "lenses" ? 1 : 0.7,
-            }}
-          >
-            Lenses &rarr;
-          </div>
+          &larr; Frame
         </div>
 
-        <div className="border-b border-violet-600"></div>
-
-        {/* Scrollable properties section */}
-        <div className="overflow-y-auto h-[calc(100vh-300px)]">
-          {renderProperties()}
+        <div
+          className={`cursor-pointer ${selectedSection === "temple" ? "text-lg" : ""}`}
+          onClick={() => handleSectionSelect("temple")}
+          style={{
+            flex: 1,
+            textAlign: "center",
+            transition: "all 0.3s ease",
+            transform: selectedSection === "temple" ? "scale(1.2)" : "scale(1)",
+            opacity: selectedSection === "temple" ? 1 : 0.7,
+          }}
+        >
+          Temple
         </div>
 
-        <div className="border-b border-gray-600"></div>
-
-        <div className="flex justify-between p-4">
-          <div
-            className="text-white bg-gray-600 p-2 w-50 rounded text-center"
-            onClick={handleReset}
-          >
-            Reset
-          </div>
-          <div className="text-violet-600 bg-gray-600 border border-violet-600 p-2 w-50 rounded text-center">
-            Save
-          </div>
+        <div
+          className={`cursor-pointer ${selectedSection === "lenses" ? "text-lg" : ""}`}
+          onClick={() => handleSectionSelect("lenses")}
+          style={{
+            flex: 1,
+            textAlign: "center",
+            transition: "all 0.3s ease",
+            transform: selectedSection === "lenses" ? "scale(1.2)" : "scale(1)",
+            opacity: selectedSection === "lenses" ? 1 : 0.7,
+          }}
+        >
+          Lenses &rarr;
         </div>
       </div>
-    </>
+
+      <div className="border-b border-violet-600"></div>
+
+      {/* Scrollable properties section */}
+      <div className="overflow-y-auto h-[calc(100vh-300px)]">
+        {renderProperties()}
+      </div>
+
+      <div className="border-b border-gray-600"></div>
+
+      <div className="flex justify-between p-4 gap-1">
+  <div
+    className={`bg-gray-600 p-2 w-1/2 border rounded text-center ${vreeStore.isDarkMode ? "text-white border-gray-600 hover:bg-gray-700 hover:text-gray-200" : "text-black bg-white border-gray-300 hover:bg-gray-900 hover:text-white "}`}
+    onClick={handleReset}
+  >
+    Reset
+  </div>
+  <div
+    className={`text-violet-600 border border-violet-600 p-2 w-1/2 rounded text-center hover:bg-violet-700 hover:text-white ${vreeStore.isDarkMode ? "bg-gray-600 " : "bg-white "}`}
+  >
+    Save
+  </div>
+</div>
+
+    </div>
   );
-};
+});
 
 export default SideBarComponent;
+
+
+
+
+
+
+
+
+
+
+
+
 
 // import React, { useState } from "react";
 // import TextureComponent from "./TextureComponent";

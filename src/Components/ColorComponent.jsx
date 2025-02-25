@@ -37,7 +37,7 @@ const ColorComponent = ({ selectedSection }) => {
     <>
         
       <div className="flex flex-col p-4 ">
-      <div className="text-xl text-white font-semibold mb-2">Color</div>
+      
         {/* Color palette */}
         <div className="flex flex-wrap space-x-10 gap-5">
           {colors.map((color, index) => (
