@@ -10,7 +10,7 @@ class VreeStore {
 
   lensColor = "#ffffff";
   lensTransparency = 0.8;
-
+  lensOpacity = 0.2;
   templeTexture = null;
   templeIntialTexture = null;
   templeColor = "#ffffff";
@@ -47,8 +47,8 @@ class VreeStore {
     this.lensesMesh[1].material.color = new THREE.Color("#ffffff");
 
     this.lensTransparency = 0.8;
-    this.lensesMesh[0].material.opacity = 0.8;
-    this.lensesMesh[1].material.opacity = 0.8;
+    this.lensesMesh[0].material.opacity = 0.2;
+    this.lensesMesh[1].material.opacity = 0.2;
 
     // Resetting Temple Properties
     this.templeTexture = "original.jpg";

@@ -79,9 +79,9 @@ export class LoaderManager {
       this.scene.add(vreeStore.templeMesh[1]);
 
       // Add the buttons to the respective meshes
-      this.addButtonToMesh(vreeStore.frameMesh, "Frame", this.handleSelectFrame);
-      this.addButtonToMesh(vreeStore.lensesMesh[0], "Lenses", this.handleSelectLenses);
-      this.addButtonToMesh(vreeStore.templeMesh[0], "Temple", this.handleSelectTemple);
+      // this.addButtonToMesh(vreeStore.frameMesh, "Frame", this.handleSelectFrame);
+      // this.addButtonToMesh(vreeStore.lensesMesh[0], "Lenses", this.handleSelectLenses);
+      // this.addButtonToMesh(vreeStore.templeMesh[0], "Temple", this.handleSelectTemple);
 
       // Call onCompleteCallback if available
       if (this.onCompleteCallback) {
@@ -91,25 +91,25 @@ export class LoaderManager {
   }
 
   // Create button and attach to the mesh as a child
-  addButtonToMesh(mesh, label, onClickHandler) {
-    const button = this.createButton(label, onClickHandler);
-    const buttonObject = new CSS2DObject(button);
+  // addButtonToMesh(mesh, label, onClickHandler) {
+  //   const button = this.createButton(label, onClickHandler);
+  //   const buttonObject = new CSS2DObject(button);
 
-    // Position the button relative to the mesh (adjust as needed)
-    buttonObject.position.set(0, 1, 0); // Adjust the position as needed
+  //   // Position the button relative to the mesh (adjust as needed)
+  //   buttonObject.position.set(0, 1, 0); // Adjust the position as needed
 
-    // Add the button as a child of the mesh
-    mesh.add(buttonObject);
-  }
+  //   // Add the button as a child of the mesh
+  //   mesh.add(buttonObject);
+  // }
 
-  // Create an HTML button element
-  createButton(label, onClickHandler) {
-    const button = document.createElement("button");
-    button.innerHTML = label;
-    button.className = "radio-button rounded border border-violet-500 bg-violet-700 text-white text-sm py-2 px-4 transform transition-transform duration-200 ease-in-out hover:scale-105";
-    button.onclick = onClickHandler;
-    return button;
-  }
+  // // Create an HTML button element
+  // createButton(label, onClickHandler) {
+  //   const button = document.createElement("button");
+  //   button.innerHTML = label;
+  //   button.className = "radio-button rounded border border-violet-500 bg-violet-700 text-white text-sm py-2 px-4 transform transition-transform duration-200 ease-in-out hover:scale-105";
+  //   button.onclick = onClickHandler;
+  //   return button;
+  // }
 
   // Button click handlers (you can customize as needed)
   handleSelectFrame = () => {

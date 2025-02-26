@@ -8,7 +8,9 @@ class CustomLens {
     ];
     vreeStore.lensColor = vreeStore.lensesMesh[0].material.color;
     vreeStore.lensesMesh[0].material.transparent = true;
-    // vreeStore.lensTransparency = 0.2
+    vreeStore.lensesMesh[1].material.transparent = true;
+    
+    vreeStore.lensesMesh[0].material.opacity = vreeStore.lensOpacity 
     // vreeStore.lensesMesh[0].material.opacity = 0.8;
     // Ensure transparency is enabled for lenses material
   }

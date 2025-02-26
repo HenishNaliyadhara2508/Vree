@@ -7,7 +7,7 @@ class CustomFrame {
 
         vreeStore.frameMetalness = vreeStore.frameMesh.material.metalness;
         vreeStore.frameRoughness = vreeStore.frameMesh.material.roughness;
-        // vreeStore.frameMesh.material.transparent = true;
+        vreeStore.frameMesh.material.transparent = true;
         vreeStore.frameTransparency = vreeStore.frameMesh.material.opacity;
       }
     
@@ -38,7 +38,7 @@ class CustomFrame {
     
       static updateFrameTransparency(transparency) {
         vreeStore.frameTransparency = transparency;
-        // vreeStore.frameMesh.material.transparent = true;
+        vreeStore.frameMesh.material.transparent = true;
     
         vreeStore.frameMesh.material.opacity = 1 - transparency;
         vreeStore.frameMesh.material.needsUpdate = true;
