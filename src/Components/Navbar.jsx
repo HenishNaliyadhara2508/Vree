@@ -27,14 +27,14 @@ const Navbar = observer( () => {
         <img
           src="/assets/logo/logo.svg"
           alt="Vree"
-          className="h-12"
+          className="h-10"
         />
 
         {/* Sun/Moon icon for toggling dark mode */}
         <img
           src={vreeStore.isDarkMode ? "/assets/icons/sun.png" : "/assets/icons/moon.png"}
           alt="Toggle Dark Mode"
-          className="h-12 cursor-pointer"
+          className="h-10 cursor-pointer"
           onClick={toggleMode}
         />
       </div>

@@ -12,6 +12,7 @@ const Labels = observer(({ addToScene }) => {
   const btnHandler = (label) => () => {
     // setSelected(label);
     vreeStore.setSelectedSection(label);
+    console.log(vreeStore.selectedSection)
   };
 
   useEffect(() => {
@@ -44,7 +45,7 @@ const Labels = observer(({ addToScene }) => {
               ? templeRef
               : lensesRef
           }
-          className={`label-button flex items-center gap-1 px-3 py-2 rounded-full border shadow-lg transition-all 
+          className={`label-button flex items-center gap-1 px-2 rounded-full border shadow-lg transition-all 
             ${
               vreeStore.selectedSection === label
                 ? "bg-purple-600 border-purple-300 text-white shadow-md" // Highlight when selected

@@ -13,9 +13,9 @@ class OutlineManager {
       this.scene,
       this.camera
     );
-    this.outlinePass.edgeStrength = 2;
+    this.outlinePass.edgeStrength = 5;
     this.outlinePass.edgeGlow = 1;
-    this.outlinePass.edgeThickness = 1;
+    this.outlinePass.edgeThickness = 2;
     this.outlinePass.visibleEdgeColor.set("#a774ff");
     this.composer.addPass(this.outlinePass);
   }
