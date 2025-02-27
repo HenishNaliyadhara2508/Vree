@@ -63,7 +63,7 @@ const TextureComponent = observer(({ selectedSection }) => {
   return (
     <>
       
-      <div className="mx-5 my-3 flex space-x-12  p-4">
+      <div className="mx-5 my-3 flex space-x-12 ms-8 p-4">
         {textures.map((texture) => (
           <div
             key={texture.textureName}

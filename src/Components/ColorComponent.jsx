@@ -416,7 +416,7 @@ const ColorComponent = observer(({ selectedSection }) => {
     <>
       <div className="flex flex-col">
         {/* Color palette */}
-        <div className="flex flex-wrap space-x-12 mx-5 my-3 px-4  mb-4">
+        <div className="flex flex-wrap space-x-12 mx-5 my-3 px-4 mb-4 ms-8">
           {colors.map((color, index) => (
             <div
               key={index}

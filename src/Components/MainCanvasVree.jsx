@@ -34,8 +34,12 @@ const MainCanvasVree = observer(() => {
 
     // Set up lights and renderer
     const ambientLight = new THREE.AmbientLight(0xffffff, 5);
-    scene.add(ambientLight);
+    scene.add(ambientLight); 
+    // const directionalLight = new THREE.DirectionalLight(0xffffff, 15);
+    // directionalLight.position.set(-1, 2, -1).normalize();
     
+    // directionalLight.castShadow = true;
+    // scene.add(directionalLight);
 
     const renderer = new THREE.WebGLRenderer({
       canvas: canvasRef.current,
@@ -62,7 +66,7 @@ const MainCanvasVree = observer(() => {
     loader.setScene(scene); // Pass scene directly to the loader
 
     loader.setOnCompleteCallback(() => {
-          const frame = new CustomFrame();
+        const frame = new CustomFrame();
         const temple = new CustomTemple();
         const lenses = new CustomLens();
       startRendering();
