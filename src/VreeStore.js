@@ -8,19 +8,20 @@ class VreeStore {
   isDarkMode = true;
   selectedSection = "frame";
 
-  lensColor = "#ffffff";
+  lensColor = "#FFFFFF";
   lensTransparency = 0.8;
   lensOpacity = 0.2;
-  templeTexture = null;
+
+  templeTexture = "original.jpg";
   templeIntialTexture = null;
-  templeColor = "#ffffff";
+  templeColor = "#FFFFFF";
   templeMetalness = 0.1;
   templeRoughness = 0.2;
   templeTransparency = 0;
 
-  frameTexture = null;
+  frameTexture = "original.jpg";
   frameIntialTexture = null;
-  frameColor = "#ffffff";
+  frameColor = "#FFFFFF";
   frameMetalness = 0.2;
   frameRoughness = 0.1;
   frameTransparency = 0;
@@ -40,9 +41,11 @@ class VreeStore {
   toggleDarkMode() {
     this.isDarkMode = !this.isDarkMode;
   }
+
+  
   resetAllProperties() {
     // Resetting Lens Properties
-    this.lensColor = "#ffffff";
+    this.lensColor = "#FFFFFF";
     this.lensesMesh[0].material.color = new THREE.Color("#ffffff");
     this.lensesMesh[1].material.color = new THREE.Color("#ffffff");
 
@@ -52,16 +55,18 @@ class VreeStore {
 
     // Resetting Temple Properties
     this.templeTexture = "original.jpg";
-    const loader = new THREE.TextureLoader();
-    loader.load(`/assets/texture/${this.templeTexture}`, (texture) => {
-      // texture.colorSpace = THREE.SRGBColorSpace;
-      this.templeMesh[0].material.map = texture;
-      this.templeMesh[1].material.map = texture;
-      this.templeMesh[0].material.needsUpdate = true;
-      this.templeMesh[1].material.needsUpdate = true;
-    });
+    // const loader = new THREE.TextureLoader();
+    // loader.load(`/assets/texture/${this.templeTexture}`, (texture) => {
+    //   // texture.colorSpace = THREE.SRGBColorSpace;
+    //   this.templeMesh[0].material.map = this.texture;
+    //   this.templeMesh[1].material.map = texture;
+    //   this.templeMesh[0].material.needsUpdate = true;
+    //   this.templeMesh[1].material.needsUpdate = true;
+    // });
+    this.templeMesh[0].material.map = this.templeIntialTexture;
+    this.templeMesh[1].material.map = this.templeIntialTexture;
 
-    this.templeColor = "#ffffff";
+    this.templeColor = "#FFFFFF";
     this.templeMesh[0].material.color = new THREE.Color("#ffffff");
     this.templeMesh[1].material.color = new THREE.Color("#ffffff");
 
@@ -74,19 +79,20 @@ class VreeStore {
     this.templeMesh[1].material.roughness = this.templeRoughness;
 
     this.templeTransparency = 0;
-    this.templeMesh[0].material.opacity = this.templeTransparency;
-    this.templeMesh[1].material.opacity = this.templeTransparency;
+    this.templeMesh[0].material.opacity = 1 - this.templeTransparency;
+    this.templeMesh[1].material.opacity = 1 - this.templeTransparency;
 
     // Resetting Frame Properties
     this.frameTexture = "original.jpg";
-    loader.load(`/assets/texture/${this.frameTexture}`, (texture) => {
-      // texture.colorSpace = THREE.SRGBColorSpace;
-      this.frameMesh.material.map = texture;
-      this.frameMesh.material.needsUpdate = true;
-    });
+    // loader.load(`/assets/texture/${this.frameTexture}`, (texture) => {
+    //   // texture.colorSpace = THREE.SRGBColorSpace;
+    //   this.frameMesh.material.map = texture;
+    //   this.frameMesh.material.needsUpdate = true;
+    // });
+    this.frameMesh.material.map = this.frameIntialTexture;
 
-    this.frameColor = "#ffffff";
-    this.frameMesh.material.color = new THREE.Color("#ffffff");
+    this.frameColor = "#FFFFFF";
+    this.frameMesh.material.color = new THREE.Color("#FFFFFF");
 
     this.frameMetalness = 0.2;
     this.frameMesh.material.metalness = this.frameMetalness;
@@ -148,8 +154,6 @@ saveToJSON() {
     colors: this.availableColors,
   };
 }
-
-
 
 }
 

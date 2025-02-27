@@ -55,7 +55,11 @@ export class LoaderManager {
         gltf.scene.getObjectByName("left_temple"),
         gltf.scene.getObjectByName("right_temple"),
       ];
-
+      vreeStore.frameIntialTexture =
+        this.loadedAssets.gltfModel.children[0].material.map;
+      vreeStore.templeIntialTexture =
+        this.loadedAssets.gltfModel.children[0].children[1].material.map;
+      console.log(this.loadedAssets.gltfModel.children[0], "gltfModel");
       this.checkAssetsLoaded();
     });
   }

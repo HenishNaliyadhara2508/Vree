@@ -33,7 +33,7 @@ const MaterialProgessBar = observer(({name, value, onChange }) => {
   return (
     <div className="flex items-center">
         <div className={`font-semibold p-4 ${vreeStore.isDarkMode ? "text-white" : "text-black"}`}>{name}</div>
-    <div className="flex flex-col items-center w-full flex-grow gap-4 mt-10 px-2">
+    <div className="flex flex-col items-center w-full flex-grow gap-4 px-2">
       <div className="relative flex items-center w-full max-w-lg">
         <div className="absolute left-0 right-0 h-1 bg-gray-500 rounded-full" />
         <div

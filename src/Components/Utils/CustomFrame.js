@@ -2,13 +2,14 @@ import * as THREE from "three";
 import { vreeStore } from "../../VreeStore";
 class CustomFrame {
     constructor() {
-        vreeStore.frameTexture = null;
-        vreeStore.frameColor = vreeStore.frameMesh.material.color;
+        vreeStore.frameTexture = "original.jpg";
+        // vreeStore.frameColor = vreeStore.frameMesh.material.color;
 
         vreeStore.frameMetalness = vreeStore.frameMesh.material.metalness;
         vreeStore.frameRoughness = vreeStore.frameMesh.material.roughness;
         vreeStore.frameMesh.material.transparent = true;
-        vreeStore.frameTransparency = vreeStore.frameMesh.material.opacity;
+        // vreeStore.frameMesh[0].material.opacity = 1-vreeStore.frameTransparency;
+        // vreeStore.frameTransparency = vreeStore.frameMesh.material.opacity;
       }
     
       static updateFrameTexture(texturePath, textureName) {
