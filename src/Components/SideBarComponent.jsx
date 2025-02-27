@@ -189,9 +189,9 @@ const SideBarComponent = observer(() => {
 
       <div className="border-b border-gray-600"></div>
 
-      <div className="flex justify-between p-4 gap-1">
+      <div className="flex justify-between py-3 gap-3">
         <div
-          className={`bg-gray-600 flex p-2 w-1/2 border rounded justify-center gap-1 text-center ${vreeStore.isDarkMode ? "text-white border-gray-600 hover:bg-gray-700 hover:text-gray-200" : "text-black bg-white border-gray-300 hover:bg-gray-900 hover:text-white "}`}
+          className={`bg-gray-600 flex p-2 w-1/2 border rounded justify-center gap-1 text-center hover:scale-105 ${vreeStore.isDarkMode ? "text-white border-gray-600 hover:bg-gray-700 hover:text-gray-200" : "text-black bg-white border-gray-300 hover:bg-gray-900 hover:text-white "}`}
           onClick={handleReset}
         >
             <div className="mt-1"><RiResetRightLine /></div>
@@ -199,7 +199,7 @@ const SideBarComponent = observer(() => {
           Reset</div>
         </div>
         <div
-          className={`text-violet-600 flex border border-violet-600 p-2 w-1/2 rounded justify-center gap-1 text-center hover:bg-violet-700 hover:text-white ${vreeStore.isDarkMode ? "" : ""}`}
+          className={`text-violet-600 flex border border-violet-600 p-2 w-1/2 rounded justify-center gap-1 text-center hover:scale-105 hover:bg-violet-700 hover:text-white ${vreeStore.isDarkMode ? "" : ""}`}
           onClick={handleSave}
         >
             <div className="mt-1"><MdSave /></div>
