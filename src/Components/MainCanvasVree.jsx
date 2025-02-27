@@ -30,15 +30,12 @@ const MainCanvasVree = observer(() => {
       0.1,
       1000
     );
-    camera.position.z = 2.5;
+    camera.position.z = 3;
 
     // Set up lights and renderer
-    const ambientLight = new THREE.AmbientLight(0xffffff, 10);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 5);
     scene.add(ambientLight);
-    // const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-    // directionalLight.position.set(5, 5, 5);
-    // directionalLight.castShadow = true;
-    // scene.add(directionalLight);
+    
 
     const renderer = new THREE.WebGLRenderer({
       canvas: canvasRef.current,
