@@ -49,6 +49,13 @@ const TextureComponent = observer(({ selectedSection }) => {
 
     if (selectedSection === "temple") {
       vreeStore.templeTexture = TextureName; // Update the selected texture for temple
+      // if (TextureName === "original.jpg") {
+      //   // If the selected texture is "original.jpg", use the initial texture from vreeStore
+      //   CustomTemple.updateTempleTexture(vreeStore.templeIntialTexture, TextureName);
+      // } else {
+      //   // For other textures, use the selected texture
+      //   CustomTemple.updateTempleTexture(TexturePath, TextureName);
+      // }
       CustomTemple.updateTempleTexture(TexturePath, TextureName); // Update texture for the temple
     }
   };
@@ -60,7 +67,7 @@ const TextureComponent = observer(({ selectedSection }) => {
         {textures.map((texture) => (
           <div
             key={texture.textureName}
-            className={`relative cursor-pointer w-10 h-10 rounded-full bg-cover bg-center transition-all duration-300 ${
+            className={`relative cursor-pointer w-10 h-10 border border-gray-300 rounded-full bg-cover bg-center transition-all duration-300 ${
               getSelectedTexture() === texture.textureName
                 ? "shadow-[0_0_20px_4px_rgba(150,100,255,0.75)] scale-105"
                 : "hover:scale-110 hover:shadow-[0_0_15px_2px_rgba(245,245,245,0.75)]"

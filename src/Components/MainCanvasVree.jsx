@@ -33,7 +33,7 @@ const MainCanvasVree = observer(() => {
     camera.position.z = 2.5;
 
     // Set up lights and renderer
-    const ambientLight = new THREE.AmbientLight(0xeeeeee, 1);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 10);
     scene.add(ambientLight);
     // const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
     // directionalLight.position.set(5, 5, 5);

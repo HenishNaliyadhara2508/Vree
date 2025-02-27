@@ -420,7 +420,7 @@ const ColorComponent = observer(({ selectedSection }) => {
           {colors.map((color, index) => (
             <div
               key={index}
-              className={`w-10 h-10 my-3 rounded-full bg-cover bg-center transition-all duration-300 ${getSelectedColor() === color
+              className={`w-10 h-10 border border-gray-300 my-3 rounded-full bg-cover bg-center transition-all duration-300 ${getSelectedColor() === color
                 ? "shadow-[0_0_20px_4px_rgba(150,100,255,0.75)] scale-105"
                 : "hover:scale-110 hover:shadow-[0_0_15px_2px_rgba(245,245,245,0.75)]"
                 }`}

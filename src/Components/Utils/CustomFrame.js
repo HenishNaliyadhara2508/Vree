@@ -14,12 +14,23 @@ class CustomFrame {
     
       static updateFrameTexture(texturePath, textureName) {
         vreeStore.frameTexture = textureName;
+        if (textureName === "original.jpg") {
+          vreeStore.frameMesh.material.map = vreeStore.frameIntialTexture;
+        }
+        else{
         const loader = new THREE.TextureLoader();
         loader.load(texturePath, (texture) => {
-          // texture.colorSpace = THREE.SRGBColorSpace;
+          texture.colorSpace = THREE.SRGBColorSpace;
+        texture.encoding = THREE.sRGBEncoding;
+        texture.repeat.set(1, 1);
+        texture.wrapS = THREE.RepeatWrapping; // Ensures that the texture is clamped to the edge (no repeat on edges)
+        texture.wrapT = THREE.RepeatWrapping;
+        texture.minFilter = THREE.LinearMipMapLinearFilter;
+        texture.magFilter = THREE.LinearFilter;
           vreeStore.frameMesh.material.map = texture;
           vreeStore.frameMesh.material.needsUpdate = true;
         });
+      }
       }
     
       static updateFrameColor(color) {

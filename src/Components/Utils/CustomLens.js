@@ -12,15 +12,20 @@ class CustomLens {
 
       // Make sure both children are meshes
       if (vreeStore.lensesMesh[0] instanceof THREE.Mesh && vreeStore.lensesMesh[1] instanceof THREE.Mesh) {
-        vreeStore.lensColor = vreeStore.lensesMesh[0].material.color;
+        // vreeStore.lensColor = vreeStore.lensesMesh[0].material.color;
+        // vreeStore.lensesMesh[0].material.transparent = true;
+        // vreeStore.lensesMesh[1].material.transparent = true;
+
+        // vreeStore.lensOpacity = vreeStore.lensesMesh[0].material.opacity;
+
+        // vreeStore.lensTransparency = 1 - vreeStore.lensOpacity;
+        // vreeStore.lensesMesh[0].material.opacity = 1  - vreeStore.lensTransparency;
+        // vreeStore.lensesMesh[1].material.opacity = 1  - vreeStore.lensTransparency;
+
         vreeStore.lensesMesh[0].material.transparent = true;
         vreeStore.lensesMesh[1].material.transparent = true;
-
-        vreeStore.lensOpacity = vreeStore.lensesMesh[0].material.opacity;
-
-        vreeStore.lensTransparency = 1 - vreeStore.lensOpacity;
-        vreeStore.lensesMesh[0].material.opacity = 1  - vreeStore.lensTransparency;
-        // vreeStore.lensesMesh[1].material.opacity = 1  - vreeStore.lensTransparency;
+        vreeStore.lensesMesh[0].material.opacity = 1- vreeStore.lensTransparency;
+        vreeStore.lensesMesh[1].material.opacity = 1- vreeStore.lensTransparency;
       } else {
         console.error("Lenses mesh children are not valid Mesh objects.");
       }
