@@ -58,7 +58,7 @@ const MainCanvasVree = observer(() => {
     canvasRef.current.parentElement.appendChild(labelRenderer.domElement);
 
     // Set up asset loader
-    const loader = new LoaderManager();
+    const loader = new LoaderManager(scene, new CSS2DRenderer());
     loader.setScene(scene); // Pass scene directly to the loader
 
     loader.setOnCompleteCallback(() => {

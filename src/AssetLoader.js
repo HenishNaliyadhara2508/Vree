@@ -1,10 +1,10 @@
 import * as THREE from "three";
-import { GLTFLoader } from "three/examples/jsm/Addons.js";
+import { CSS2DRenderer, GLTFLoader } from "three/examples/jsm/Addons.js";
 import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader.js";
 import { vreeStore } from "./VreeStore";
 
 export class LoaderManager {
-  constructor() {
+  constructor(scene,css2DRenderer) {
     this.loadedAssets = {
       environmentTexture: false,
       gltfModel: false,
