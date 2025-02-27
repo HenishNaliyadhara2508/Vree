@@ -6,7 +6,7 @@ import SideBarComponent from "./Components/SideBarComponent";
 function App() {
   return (
     <>
-      <div className="relative">
+      <div className="relative ">
         <Navbar />
         <div className="w-50">
           <MainCanvasVree />

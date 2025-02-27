@@ -21,7 +21,7 @@ const Navbar = observer( () => {
   };
 
   return (
-    <div className="absolute top-0 left-0 right-0 m-5">
+    <div className="absolute top-0 left-0 right-0 m-5 h-[10vh]">
       <div className="flex justify-between">
         {/* Logo */}
         <img

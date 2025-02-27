@@ -26,7 +26,7 @@ const MainCanvasVree = observer(() => {
     const scene = new THREE.Scene(); // Declare scene directly in useEffect
     const camera = new THREE.PerspectiveCamera(
       75,
-      window.innerWidth * 0.6 / window.innerHeight,
+      window.innerWidth * 0.6 / window.innerHeight*0.9,
       0.1,
       1000
     );
@@ -41,7 +41,7 @@ const MainCanvasVree = observer(() => {
       canvas: canvasRef.current,
       alpha: true,
     });
-    renderer.setSize(window.innerWidth * 0.6, window.innerHeight);
+    renderer.setSize(window.innerWidth * 0.6, window.innerHeight*0.9);
     renderer.shadowMap.enabled = true;
 
     // Set up CSS2DRenderer for labels
@@ -208,7 +208,7 @@ const MainCanvasVree = observer(() => {
 
   return (
     <div>
-      <canvas ref={canvasRef} className="webgl min-h-screen" />
+      <canvas ref={canvasRef} className="webgl h-screen" />
       {addLabelsToScene && <Labels addToScene={addLabelsToScene} />}
     </div>
   );

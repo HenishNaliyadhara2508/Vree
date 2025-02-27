@@ -142,7 +142,7 @@ const SideBarComponent = observer(() => {
         backgroundPosition: "center",
         padding: "10px",
       }}
-      className="absolute right-0 top-10 bottom-10 m-10 rounded-lg w-125 border border-gray-400"
+      className="absolute right-0 top-10 h-[80vh] m-10 rounded-lg w-140 border border-gray-400"
     >
       {/* Button Controls */}
       <div className="flex justify-between w-full text-lg font-bold cursor-pointer border-b-1 border-[#A673FF] gap-4 mt-2">
